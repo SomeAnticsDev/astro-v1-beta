@@ -1,2 +1,5 @@
 [functions]
 	external_node_modules = ["astro"]
+
+[build]
+	publish = "/"
