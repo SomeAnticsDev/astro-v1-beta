@@ -1,6 +1,6 @@
 ---
 import Layout from '../components/Layout.astro';
-import Carousel from '../components/Carousel.svelte';
+// import Carousel from '../components/Carousel.svelte';
 
 const DATE_FORMAT = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -43,7 +43,7 @@ const photos = [
 		</button>
 	</form>
 
-	<Carousel photos={photos} client:idle />
+	<!-- <Carousel photos={photos} client:idle /> -->
 </Layout>
 <style>
 	form {
