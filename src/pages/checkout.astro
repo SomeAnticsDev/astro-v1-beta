@@ -1,0 +1,17 @@
+---
+import Layout from '../components/Layout.astro';
+
+const request = Astro.request;
+const data = new URLSearchParams(await request.text());
+console.log(data)
+---
+
+<Layout>
+	<h1>You're ordered!</h1>
+	<p>
+		Your package will arrive once we retrieve it from the nearest black hole's event horizon.
+	</p>
+	<output>
+		{data.get('quantity')}
+	</output>
+</Layout>

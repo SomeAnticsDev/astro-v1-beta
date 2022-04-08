@@ -1,0 +1,102 @@
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+:root {
+  --grey-1: 12, 5%, 4%;
+  --grey-2: 12, 5%, 14%;
+  --grey-3: 12, 5%, 24%;
+  --grey-4: 12, 7%, 34%;
+  --grey-5: 12, 9%, 50%;
+  --grey-6: 12, 12%, 60%;
+  --grey-7: 12, 14%, 70%;
+  --grey-8: 12, 15%, 84%;
+  --grey-9: 12, 17%, 94%;
+  --blue-1: #215EFE;
+  --pink-1: #C038BD;
+  --pink-2: #DA62C4;
+
+  --text: hsl(var(--grey-1));
+  --gradient-primary: linear-gradient(var(--blue-1), var(--pink-1));
+  --bg: hsl(var(--grey-9));
+
+  --font-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-heading: 'RT Alias Medium', var(--font-base);
+}
+
+html {
+  font-family: var(--font-base);
+  color: var(--text);
+  padding: 2rem;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(20deg, #DA62C4, #ED999A 15%, #F3EFEE 50%);
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+  font-family: var(--font-heading);
+}
+
+button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.2em;
+  background: none;
+  cursor: pointer;
+  color: var(--bg);
+  background: var(--gradient-primary);
+  background-size: 100% 200%;
+  transition: background-position-y 0.2s;
+  border-radius: 0.3rem;
+}
+
+button:hover, button:focus {
+  background-position-y: 100%;
+}
+
+input, select {
+  padding: 0.8rem 0.5rem;
+  border: 1px solid hsl(var(--grey-8));
+  font-family: var(--font-base);
+  border-radius: 0.3rem;
+  color: var(--text);
+}
+
+/** Optional - if we have time for a neat homepage banner! */
+.banner-cta {
+  height: 200px;
+  display: block;
+  position: relative;
+  transition: transform 0.4s;
+}
+
+.banner-cta:hover {
+  transform: translateY(-0.3rem);
+}
+
+.banner-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, var(--text));
+  border-radius: 0.5rem;
+}
+
+.banner-cta__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.banner-cta__text {
+  position: absolute;
+  z-index: 1;
+  bottom: 0.5rem;
+  right: 1rem;
+  font-family: var(--font-heading);
+  color: white;
+}

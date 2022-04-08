@@ -1,0 +1,63 @@
+---
+import Layout from '../components/Layout.astro';
+import Carousel from '../components/Carousel.svelte';
+
+const DATE_FORMAT = /^\d{4}-\d{2}-\d{2}$/;
+
+if(!DATE_FORMAT.test(Astro.params.date)) {
+	return Astro.redirect('/');
+}
+
+const endpoint = `https://api.nasa.gov/planetary/apod?api_key=${import.meta.env.NASA_API}&date=${Astro.params.date}`;
+
+const image = await fetch(endpoint).then(res => res.json());
+
+if(image['media_type'] !== 'image') {
+	return Astro.redirect('/');
+}
+
+const photos = [
+	{url: '', alt: 'Broken', title: 'Yikes'},
+	{url: '', alt: 'Astro', title: 'Yay Astro'},
+];
+---
+
+<Layout>
+	<img
+		src={image.url}
+		alt={image.title}
+	/>
+
+	<form method="post" action="/checkout">
+		<label for="quantity">Quantity</label>
+		<input type="number" id="quantity" name="quantity" />
+		<label for="size">Size</label>
+		<select id="size" name="size">
+			<option value="sm">Small</option>
+			<option value="md">Medium</option>
+			<option value="lg">Large</option>
+		</select>
+
+		<button type="submit">
+			Submit
+		</button>
+	</form>
+
+	<Carousel photos={photos} client:idle />
+</Layout>
+<style>
+	form {
+		display: grid;
+		margin: 5em;
+	}
+
+	form > input {
+		margin-bottom: 2em;
+	}
+
+	label {
+		font-family: var(--font-heading);
+		font-weight: 800;
+		font-size: x-large;
+	}
+</style>
